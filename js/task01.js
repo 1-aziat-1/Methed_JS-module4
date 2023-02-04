@@ -1,7 +1,9 @@
-const convertor = (product) => {
-  return product*1.2*73;
-};
+console.log('----------------------------------1-----------------------------------');
+for (let i = 1; i<=10; i++) {
+  console.log('-------------------');
+  for (let j = 1; j<=10; j++) {
+    console.log(i + '**' + j + " = " + i**j);
+  }
+}
 
-let result = convertor(100);
-
-console.log(result);
+console.log('----------------------------------2-----------------------------------');

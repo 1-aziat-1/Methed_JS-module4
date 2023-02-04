@@ -1,6 +1,10 @@
-const modStr = (str) => {
-  arr = str.split(' ');
-  return arr[0][0].toUpperCase() + arr[0].slice(1) + ' ' + arr[1].toLowerCase();
+const isPrime = (a) => {
+  for (let i = 2; i<a; i++) {
+    if (a%i===0) return `${a} - число непростое`;
+  }
+  return `${a} - число простое`;
 };
 
-console.log(modStr("привет Мир"));
+console.log(isPrime(13));
+
+console.log('----------------------------------3-----------------------------------');

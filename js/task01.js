@@ -1,9 +1,16 @@
 console.log('----------------------------------1-----------------------------------');
-for (let i = 1; i<=10; i++) {
-  console.log('-------------------');
-  for (let j = 1; j<=10; j++) {
-    console.log(i + '**' + j + " = " + i**j);
-  }
-}
+{const filter = (allstudent, badStudent) => {
+  result = []
+  allstudent.forEach(itemAll => {
+    for (let i = 0; i<badStudent.length; i++) {
+      if (itemAll === badStudent[i]) return;
+    }
+    result.push(itemAll);
+  });
+  return result;
+};
 
-console.log('----------------------------------2-----------------------------------');
+const allstudent = ['Иванов', 'Сидоров', 'Кузнецов', 'Емельянов', 'Попов'];
+const badStudent = ['Кузнецов', 'Емельянов'];
+
+console.log(filter(allstudent, badStudent));}

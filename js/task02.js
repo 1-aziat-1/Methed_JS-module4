@@ -1,13 +1,13 @@
 console.log('----------------------------------2-----------------------------------');
-{const allCashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
+{
+  const generateNumber = (n,min = 0,max = 0) => {
+    let arr = [];
+  
+    for (let i = 0; i<n; i++) {
+      arr.push( Math.round(Math.random() * (max-min) + min));
+    }
+    return arr;
+  };
 
-const getAverageValue = (allCashbox) => {
-  const summArr = allCashbox.reduce((acum, item) => {
-    return acum + item;
-  });
-
-  return Math.floor( summArr / allCashbox.length);
-};
-
-console.log('средний чек: ', getAverageValue(allCashbox));
+  console.log(generateNumber(5,30,32));
 }

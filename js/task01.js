@@ -1,16 +1,12 @@
 console.log('----------------------------------1-----------------------------------');
-{const filter = (allstudent, badStudent) => {
-  result = []
-  allstudent.forEach(itemAll => {
-    for (let i = 0; i<badStudent.length; i++) {
-      if (itemAll === badStudent[i]) return;
+{
+  const generateNumber = (n) => {
+    let arr = [];
+    for (let i = 0; i<n; i++) {
+      arr.push( Math.round(Math.random() * 100));
     }
-    result.push(itemAll);
-  });
-  return result;
-};
+    return arr;
+  };
 
-const allstudent = ['Иванов', 'Сидоров', 'Кузнецов', 'Емельянов', 'Попов'];
-const badStudent = ['Кузнецов', 'Емельянов'];
-
-console.log(filter(allstudent, badStudent));}
+  console.log(generateNumber(5));
+}

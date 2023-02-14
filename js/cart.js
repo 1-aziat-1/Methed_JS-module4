@@ -1,3 +1,5 @@
+'use strict';
+
 const cart = {
   items: [],
   count: 0,
@@ -18,11 +20,13 @@ const cart = {
   },
 
   increaseCount(num) {
-    return this.count+=num;
+    return this.count += num;
   },
 
   calculateItemPrice() {
-    return this.items.reduce((acc,curent) => acc + (curent.priceItem*curent.countItem),0);
+    return this.items.reduce((acc, curent) =>
+      acc + (curent.priceItem * curent.countItem),
+    0);
   },
 
   clear() {
@@ -36,14 +40,12 @@ const cart = {
       console.log(`${item.nameItem}: ${JSON.stringify(item)}`);
     });
     console.log(`Всего товаров на сумму: ${this.totalPrice} рублей`);
-  }, 
+  },
 };
 
-cart.add ('ps', 90000 , 8);
-cart.add ('book', 100 , 2);
+cart.add('ps', 90000, 8);
+cart.add('book', 100, 2);
 
 cart.print();
-
-
 
 

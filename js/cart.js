@@ -1,10 +1,9 @@
 const cart = {
   items: [],
-  totalPrice: 0,
   count: 0,
 
-  getTotalPrice() { 
-    return this.totalPrice;
+  get totalPrice() {
+    return this.calculateItemPrice();
   },
 
   add(nameItem, priceItem, countItem = 1) {
@@ -16,7 +15,6 @@ const cart = {
 
     this.items.push(objItem);
     this.increaseCount(countItem);
-    this.calculateItemPrice();
   },
 
   increaseCount(num) {
@@ -24,7 +22,7 @@ const cart = {
   },
 
   calculateItemPrice() {
-    this.totalPrice = this.items.reduce((acc,curent) => acc + (curent.priceItem*curent.countItem),0);
+    return this.items.reduce((acc,curent) => acc + (curent.priceItem*curent.countItem),0);
   },
 
   clear() {
@@ -37,14 +35,15 @@ const cart = {
     this.items.forEach(item => {
       console.log(`${item.nameItem}: ${JSON.stringify(item)}`);
     });
-    console.log(`Всего товаров на сумму: ${this.getTotalPrice()} рублей`);
+    console.log(`Всего товаров на сумму: ${this.totalPrice} рублей`);
   }, 
 };
 
 cart.add ('ps', 90000 , 8);
-cart.add ('car', 120000, 1);
-cart.add ('picture', 2000, 3);
+cart.add ('book', 100 , 2);
 
 cart.print();
+
+
 
 

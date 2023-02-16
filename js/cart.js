@@ -3,9 +3,15 @@
 const cart = {
   items: [],
   count: 0,
+  discount: 1,
 
   get totalPrice() {
     return this.calculateItemPrice();
+  },
+
+  set setDiscount(promocode) {
+    promocode === 'METHED' ? this.discount = 1.15 : 1;
+    promocode === 'NEWYEAR' ? this.discount = 1.21 : 1;
   },
 
   add(nameItem, priceItem, countItem = 1) {
@@ -23,11 +29,14 @@ const cart = {
     return this.count += num;
   },
 
+// Почему надо округлять? почему значение не целое?
+
   calculateItemPrice() {
-    return this.items.reduce((acc, curent) =>
+    return Math.round(this.items.reduce((acc, curent) =>
       acc + (curent.priceItem * curent.countItem),
-    0);
+    0) * this.discount);
   },
+
 
   clear() {
     this.items.length = 0;
@@ -42,9 +51,9 @@ const cart = {
     console.log(`Всего товаров на сумму: ${this.totalPrice} рублей`);
   },
 };
-
+cart.setDiscount = 'NEWYEAR';
 cart.add('ps', 90000, 8);
-cart.add('book', 100, 2);
+
 
 cart.print();
 

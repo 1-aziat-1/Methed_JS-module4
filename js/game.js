@@ -52,14 +52,16 @@
     return closeGame(lang, start, result);
   };
 
-  const game = (language = 'EN') => {
+  const game = () => {
     const result = {
       playre: 0,
       computer: 0,
     };
 
     // eslint-disable-next-line max-len
-    const lang = language === 'EN' || language === 'ENG' ? langObj['EN'] : langObj['RU'];
+    const language = confirm('Игра будет на русском языке?\nWill the game be in Russian?');
+    // eslint-disable-next-line max-len
+    const lang = language === false ? langObj['EN'] : langObj['RU'];
 
     return function start() {
       const userPrompt = prompt(lang.helloTitle);

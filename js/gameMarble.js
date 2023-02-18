@@ -1,9 +1,6 @@
 'use strict';
 
 (() => {
-  const startMorro = window.Morro();
-  const persoOne = startMorro();
-
   const getRandomIvenOdd = (max = 2) =>
     Math.floor(Math.random() * max);
 
@@ -17,7 +14,13 @@
     return start();
   };
 
-  const game = (person = persoOne) => {
+  const game = (person = 'comp') => {
+    const startMorro = window.Morro();
+    const persoOne = startMorro();
+    if (persoOne === undefined) {
+      return;
+    }
+    person = persoOne;
     const result = {
       playre: 5,
       computer: 5,
@@ -25,6 +28,7 @@
     // eslint-disable-next-line max-len
     alert(`Игра начинается!\nУ вас ${result.playre}\nУ компьютера ${result.computer}`);
     return function start() {
+      console.log('fffffffffffff');
       if (person === 'playre') {
         const enterPlayre = prompt(`Загадайте число от 1 до ${result.playre}`);
         const playreNum = Number(enterPlayre);
@@ -47,7 +51,12 @@
           result.playre -= playreNum;
           result.computer += playreNum;
           if (result.playre <= 0) {
-            return alert(`Вы проебали, с позором`);
+            alert(`Вы проиграли, с позором`);
+            if (confirm(`Хотите поиграть еще?`)) {
+              const startMarbleGame = window.Marble();
+              return startMarbleGame();
+            }
+            return alert('Досвидание');
           }
 
           // eslint-disable-next-line max-len
@@ -58,7 +67,12 @@
           result.playre += playreNum;
           result.computer -= playreNum;
           if (result.computer <= 0) {
-            return alert(`Вы выиграли, красавчик`);
+            alert(`Вы выиграли, красавчик`);
+            if (confirm(`Хотите поиграть еще?`)) {
+              const startMarbleGame = window.Marble();
+              return startMarbleGame();
+            }
+            return alert('Досвидание');
           }
 
           // eslint-disable-next-line max-len
@@ -77,7 +91,12 @@
           result.computer -= compInt;
           result.playre += compInt;
           if (result.computer <= 0) {
-            return alert(`Вы выиграли`);
+            alert(`Вы выиграли`);
+            if (confirm(`Хотите поиграть еще?`)) {
+              const startMarbleGame = window.Marble();
+              return startMarbleGame();
+            }
+            return alert('Досвидание');
           }
 
           // eslint-disable-next-line max-len
@@ -88,7 +107,12 @@
           result.playre -= compInt;
           result.computer += compInt;
           if (result.playre <= 0) {
-            return alert(`Вы проиграли`);
+            alert(`Вы проиграли`);
+            if (confirm(`Хотите поиграть еще?`)) {
+              const startMarbleGame = window.Marble();
+              return startMarbleGame();
+            }
+            return alert('Досвидание');
           }
 
           // eslint-disable-next-line max-len

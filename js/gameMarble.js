@@ -48,8 +48,7 @@
 
 
   const game = (person = 'comp') => {
-    const startMorro = window.Morro();
-    const persoOne = startMorro();
+    const persoOne = window.Morro()();
     if (persoOne === undefined) {
       return;
     }

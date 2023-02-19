@@ -40,34 +40,16 @@
 
     const compStep = getRandomIntinclusive();
 
-    if ((userStep === 0 && compStep === 0) ||
-      (userStep === 1 && compStep === 1) ||
-      (userStep === 2 && compStep === 2)
-    ) {
+    if (userStep === compStep) {
       alert(`Ничья!`);
       return start();
     }
-    if (userStep === 0 && compStep === 1) {
+    if ((userStep === 0 && compStep === 1) ||
+        (userStep === 2 && compStep === 0) ||
+        (userStep === 1 && compStep === 2)) {
       alert('Вы ходите первым!');
       return person = 'playre';
-    }
-    if (userStep === 1 && compStep === 0) {
-      alert('Компьютер ходит первым!');
-      return person = 'comp';
-    }
-    if (userStep === 2 && compStep === 0) {
-      alert('Вы ходите первым!');
-      return person = 'playre';
-    }
-    if (userStep === 0 && compStep === 2) {
-      alert('Компьютер ходит первым!');
-      return person = 'comp';
-    }
-    if (userStep === 1 && compStep === 2) {
-      alert('Вы ходите первым!');
-      return person = 'playre';
-    }
-    if (userStep === 2 && compStep === 1) {
+    } else {
       alert('Компьютер ходит первым!');
       return person = 'comp';
     }

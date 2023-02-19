@@ -78,45 +78,19 @@
       }
       const compStep = getRandomIntinclusive();
 
-      if ((userStep === 0 && compStep === 0) ||
-          (userStep === 1 && compStep === 1) ||
-          (userStep === 2 && compStep === 2)
-      ) {
+      if (userStep === compStep) {
         // eslint-disable-next-line max-len
         alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.drawTitle}`);
         return repeatGame(lang, start, result);
       }
-      if (userStep === 0 && compStep === 1) {
+      if ((userStep === 0 && compStep === 1) ||
+      (userStep === 2 && compStep === 0) ||
+      (userStep === 1 && compStep === 2)) {
         result.playre += 1;
         // eslint-disable-next-line max-len
         alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.playerWin}`);
         return repeatGame(lang, start, result);
-      }
-      if (userStep === 1 && compStep === 0) {
-        result.computer += 1;
-        // eslint-disable-next-line max-len
-        alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.compWin}`);
-        return repeatGame(lang, start, result);
-      }
-      if (userStep === 2 && compStep === 0) {
-        result.playre += 1;
-        // eslint-disable-next-line max-len
-        alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.playerWin}`);
-        return repeatGame(lang, start, result);
-      }
-      if (userStep === 0 && compStep === 2) {
-        result.computer += 1;
-        // eslint-disable-next-line max-len
-        alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.compWin}`);
-        return repeatGame(lang, start, result);
-      }
-      if (userStep === 1 && compStep === 2) {
-        result.playre += 1;
-        // eslint-disable-next-line max-len
-        alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.playerWin}`);
-        return repeatGame(lang, start, result);
-      }
-      if (userStep === 2 && compStep === 1) {
+      } else {
         result.computer += 1;
         // eslint-disable-next-line max-len
         alert(`${lang.compTitle}: ${lang.value[compStep]}\n${lang.playerTitle}: ${lang.value[userStep]}\n${lang.compWin}`);

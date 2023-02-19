@@ -14,6 +14,39 @@
     return start();
   };
 
+  const loseGame = (result, Num) => {
+    console.log(result);
+    result.playre -= Num;
+    result.computer += Num;
+    if (result.playre <= 0) {
+      alert(`Вы проиграли, с позором`);
+      if (confirm(`Хотите поиграть еще?`)) {
+        return window.Marble()();
+      }
+      return alert('Досвидание');
+    }
+    // eslint-disable-next-line max-len
+    alert(`Вы не угадали!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
+    return result;
+  };
+
+  const winGame = (result, Num) => {
+    console.log(result);
+    result.playre += Num;
+    result.computer -= Num;
+    if (result.computer <= 0) {
+      alert(`Вы выиграли, красавчик`);
+      if (confirm(`Хотите поиграть еще?`)) {
+        return window.Marble()();
+      }
+      return alert('Досвидание');
+    }
+    // eslint-disable-next-line max-len
+    alert(`Вы угадали!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
+    return result;
+  };
+
+
   const game = (person = 'comp') => {
     const startMorro = window.Morro();
     const persoOne = startMorro();
@@ -25,10 +58,10 @@
       playre: 5,
       computer: 5,
     };
+
     // eslint-disable-next-line max-len
     alert(`Игра начинается!\nУ вас ${result.playre}\nУ компьютера ${result.computer}`);
     return function start() {
-      console.log('fffffffffffff');
       if (person === 'playre') {
         const enterPlayre = prompt(`Загадайте число от 1 до ${result.playre}`);
         const playreNum = Number(enterPlayre);
@@ -45,79 +78,36 @@
         }
 
         const compNum = getRandomIvenOdd();
-        console.log(`${playreNum} - ${compNum}`);
 
         if (playreNum % 2 === compNum) {
-          result.playre -= playreNum;
-          result.computer += playreNum;
-          if (result.playre <= 0) {
-            alert(`Вы проиграли, с позором`);
-            if (confirm(`Хотите поиграть еще?`)) {
-              const startMarbleGame = window.Marble();
-              return startMarbleGame();
-            }
-            return alert('Досвидание');
-          }
-
-          // eslint-disable-next-line max-len
-          alert(`Компьютер угадал!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
           person = 'comp';
+          const check = loseGame(result, playreNum);
+          if (check === undefined) return;
           return start();
         } else {
-          result.playre += playreNum;
-          result.computer -= playreNum;
-          if (result.computer <= 0) {
-            alert(`Вы выиграли, красавчик`);
-            if (confirm(`Хотите поиграть еще?`)) {
-              const startMarbleGame = window.Marble();
-              return startMarbleGame();
-            }
-            return alert('Досвидание');
-          }
-
-          // eslint-disable-next-line max-len
-          alert(`Компьютер не угадал!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
           person = 'comp';
+          const check = winGame(result, playreNum);
+          if (check === undefined) return;
           return start();
         }
       }
 
       if (person === 'comp') {
+        console.log(result);
         const compInt = getRandomIntInclusive(1, result.computer);
+        console.log('compInt ' + compInt);
         // eslint-disable-next-line max-len
         const playreOddIven = confirm('Компьютер загадал четное число?') ? 0 : 1;
-
+        console.log(playreOddIven);
         if (compInt % 2 === playreOddIven) {
-          result.computer -= compInt;
-          result.playre += compInt;
-          if (result.computer <= 0) {
-            alert(`Вы выиграли`);
-            if (confirm(`Хотите поиграть еще?`)) {
-              const startMarbleGame = window.Marble();
-              return startMarbleGame();
-            }
-            return alert('Досвидание');
-          }
-
-          // eslint-disable-next-line max-len
-          alert(`Вы угадали!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
           person = 'playre';
+          const check = winGame(result, compInt);
+          if (check === undefined) return;
           return start();
         } else {
-          result.playre -= compInt;
-          result.computer += compInt;
-          if (result.playre <= 0) {
-            alert(`Вы проиграли`);
-            if (confirm(`Хотите поиграть еще?`)) {
-              const startMarbleGame = window.Marble();
-              return startMarbleGame();
-            }
-            return alert('Досвидание');
-          }
-
-          // eslint-disable-next-line max-len
-          alert(`Вы не угадали!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
           person = 'playre';
+          const check = loseGame(result, compInt);
+          if (check === undefined) return;
           return start();
         }
       }

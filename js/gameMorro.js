@@ -16,13 +16,6 @@
     return start();
   };
 
-  const repeatGame = (lang, start, result) => {
-    if (confirm(lang.repeatTitle)) {
-      return start();
-    }
-    return closeGame(lang, start, result);
-  };
-
   const game = () => function start() {
     // eslint-disable-next-line max-len
     const userInput = prompt('камень, ножницы или бумага?');
@@ -39,7 +32,6 @@
     }
 
     const compStep = getRandomIntinclusive();
-
     if (userStep === compStep) {
       alert(`Ничья!`);
       return start();

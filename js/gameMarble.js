@@ -81,33 +81,27 @@
 
         if (playreNum % 2 === compNum) {
           person = 'comp';
-          const check = loseGame(result, playreNum);
-          if (check === undefined) return;
+          if (loseGame(result, playreNum) === undefined) return;
           return start();
         } else {
           person = 'comp';
-          const check = winGame(result, playreNum);
-          if (check === undefined) return;
+          if (winGame(result, playreNum) === undefined) return;
           return start();
         }
       }
 
       if (person === 'comp') {
-        console.log(result);
         const compInt = getRandomIntInclusive(1, result.computer);
-        console.log('compInt ' + compInt);
         // eslint-disable-next-line max-len
         const playreOddIven = confirm('Компьютер загадал четное число?') ? 0 : 1;
-        console.log(playreOddIven);
+
         if (compInt % 2 === playreOddIven) {
           person = 'playre';
-          const check = winGame(result, compInt);
-          if (check === undefined) return;
+          if (winGame(result, compInt) === undefined) return;
           return start();
         } else {
           person = 'playre';
-          const check = loseGame(result, compInt);
-          if (check === undefined) return;
+          if (loseGame(result, compInt) === undefined) return;
           return start();
         }
       }

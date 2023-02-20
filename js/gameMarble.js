@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  const getRandomIvenOdd = (max = 2) =>
+  const getRandomEvenOdd = (max = 2) =>
     Math.floor(Math.random() * max);
 
   const getRandomIntInclusive = (min = 1, max) =>
@@ -15,24 +15,22 @@
   };
 
   const loseGame = (result, Num) => {
-    console.log(result);
-    result.playre -= Num;
+    result.player -= Num;
     result.computer += Num;
-    if (result.playre <= 0) {
+    if (result.player <= 0) {
       alert(`Вы проиграли, с позором`);
       if (confirm(`Хотите поиграть еще?`)) {
         return window.Marble()();
       }
       return alert('Досвидание');
     }
-    // eslint-disable-next-line max-len
-    alert(`Вы не угадали!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
+    alert(`Вы не угадали!\nУ вас шарик(а/ов): ${result.player}\nУ компьютера шарик(а/ов): ${result.computer}`);
     return result;
   };
 
   const winGame = (result, Num) => {
     console.log(result);
-    result.playre += Num;
+    result.player += Num;
     result.computer -= Num;
     if (result.computer <= 0) {
       alert(`Вы выиграли, красавчик`);
@@ -41,65 +39,60 @@
       }
       return alert('Досвидание');
     }
-    // eslint-disable-next-line max-len
-    alert(`Вы угадали!\nУ вас шарик(а/ов): ${result.playre}\nУ компьютера шарик(а/ов): ${result.computer}`);
+    alert(`Вы угадали!\nУ вас шарик(а/ов): ${result.player}\nУ компьютера шарик(а/ов): ${result.computer}`);
     return result;
   };
 
 
   const game = (person = 'comp') => {
-    const persoOne = window.Morro()();
-    if (persoOne === undefined) {
+    const personOne = window.Morro()();
+    if (personOne === undefined) {
       return;
     }
-    person = persoOne;
+    person = personOne;
     const result = {
-      playre: 5,
+      player: 5,
       computer: 5,
     };
 
-    // eslint-disable-next-line max-len
-    alert(`Игра начинается!\nУ вас ${result.playre}\nУ компьютера ${result.computer}`);
+    alert(`Игра начинается!\nУ вас ${result.player}\nУ компьютера ${result.computer}`);
     return function start() {
-      if (person === 'playre') {
-        const enterPlayre = prompt(`Загадайте число от 1 до ${result.playre}`);
-        const playreNum = Number(enterPlayre);
+      if (person === 'player') {
+        const enterPlayer = prompt(`Загадайте число от 1 до ${result.player}`);
+        const playerNum = Number(enterPlayer);
 
-        if (enterPlayre === null) {
+        if (enterPlayer === null) {
           return closeGame(start);
         }
 
-        // eslint-disable-next-line max-len
-        if (Number.isNaN(parseFloat(playreNum)) || (playreNum > result.playre) || (playreNum < 1)) {
-          // eslint-disable-next-line max-len
-          alert(`Вы ввели не число или не попали в диапазон от 1 до ${result.playre}`);
+        if (Number.isNaN(parseFloat(playerNum)) || (playerNum > result.player) || (playerNum < 1)) {
+          alert(`Вы ввели не число или не попали в диапазон от 1 до ${result.player}`);
           return start();
         }
 
-        const compNum = getRandomIvenOdd();
+        const compNum = getRandomEvenOdd();
 
-        if (playreNum % 2 === compNum) {
+        if (playerNum % 2 === compNum) {
           person = 'comp';
-          if (loseGame(result, playreNum) === undefined) return;
+          if (loseGame(result, playerNum) === undefined) return;
           return start();
         } else {
           person = 'comp';
-          if (winGame(result, playreNum) === undefined) return;
+          if (winGame(result, playerNum) === undefined) return;
           return start();
         }
       }
 
       if (person === 'comp') {
         const compInt = getRandomIntInclusive(1, result.computer);
-        // eslint-disable-next-line max-len
-        const playreOddIven = confirm('Компьютер загадал четное число?') ? 0 : 1;
+        const playerOddEven = confirm('Компьютер загадал четное число?') ? 0 : 1;
 
-        if (compInt % 2 === playreOddIven) {
-          person = 'playre';
+        if (compInt % 2 === playerOddEven) {
+          person = 'player';
           if (winGame(result, compInt) === undefined) return;
           return start();
         } else {
-          person = 'playre';
+          person = 'player';
           if (loseGame(result, compInt) === undefined) return;
           return start();
         }

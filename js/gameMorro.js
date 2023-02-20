@@ -2,11 +2,10 @@
 
 (() => {
   const figure = ['камень', 'ножницы', 'бумага'];
-  let person = 'playre';
+  let person = 'player';
 
-  const getRandomIntinclusive = (max = 3) =>
+  const getRandomInclusive = (max = 3) =>
     Math.floor(Math.random() * (max));
-  // eslint-disable-next-line max-len
   const getFigure = (step) => figure.findIndex(item => item.startsWith(step));
 
   const closeGame = (start) => {
@@ -17,11 +16,15 @@
   };
 
   const game = () => function start() {
-    // eslint-disable-next-line max-len
     const userInput = prompt('камень, ножницы или бумага?');
 
     if (userInput === null) {
       return closeGame(start);
+    }
+
+    if (userInput === '') {
+      alert('Вы ничего не ввели!');
+      return start();
     }
 
     const userStep = getFigure(userInput.toLowerCase());
@@ -31,7 +34,7 @@
       return start();
     }
 
-    const compStep = getRandomIntinclusive();
+    const compStep = getRandomInclusive();
     if (userStep === compStep) {
       alert(`Ничья!`);
       return start();
@@ -40,7 +43,7 @@
         (userStep === 2 && compStep === 0) ||
         (userStep === 1 && compStep === 2)) {
       alert('Вы ходите первым!');
-      return person = 'playre';
+      return person = 'player';
     } else {
       alert('Компьютер ходит первым!');
       return person = 'comp';
